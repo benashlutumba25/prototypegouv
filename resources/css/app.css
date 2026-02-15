@@ -52,7 +52,7 @@
 }
 
 [data-flux-label] {
-    @apply  !mb-0 !leading-tight;
+    @apply !mb-0 !leading-tight;
 }
 
 input:focus[data-flux-control],
@@ -64,3 +64,207 @@ select:focus[data-flux-control] {
 /* \[:where(&)\]:size-4 {
     @apply size-4;
 } */
+
+/* ===========================
+   MODERN DESIGN ENHANCEMENTS
+   =========================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+@layer base {
+    :root {
+        /* Government Blue Color Palette */
+        --primary-gradient: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+        --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        --success-gradient: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+        --bg-gradient: linear-gradient(135deg, #1e40af 0%, #1d4ed8 50%, #3b82f6 100%);
+
+        /* Glassmorphism */
+        --glass-bg: rgba(255, 255, 255, 0.95);
+        --glass-border: rgba(255, 255, 255, 0.18);
+        --glass-shadow: 0 8px 32px 0 rgba(29, 78, 216, 0.15);
+
+        /* Shadows */
+        --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+        --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+        --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+        --shadow-xl: 0 20px 48px rgba(0, 0, 0, 0.16);
+
+        /* Modern Typography */
+        --font-display: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+        --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    }
+}
+
+/* Animated Background Gradient */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(102, 126, 234, 0.3), 0 0 40px rgba(102, 126, 234, 0.2);
+    }
+
+    50% {
+        box-shadow: 0 0 30px rgba(102, 126, 234, 0.5), 0 0 60px rgba(102, 126, 234, 0.3);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+/* Modern Body Styles */
+body {
+    font-family: var(--font-body);
+    background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 50%, #3b82f6 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    min-height: 100vh;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+}
+
+/* Glassmorphism Card */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    border-radius: 16px;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Modern Input Styles */
+.modern-input,
+.modern-select {
+    @apply w-full px-4 py-3 rounded-lg border-2 border-gray-200/50 bg-white/80 backdrop-blur-sm transition-all duration-300 ease-out focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 focus:bg-white focus:outline-none hover:border-blue-400;
+    font-family: var(--font-body);
+}
+
+.modern-select {
+    @apply cursor-pointer appearance-none bg-no-repeat;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.75rem center;
+    background-size: 1.5em 1.5em;
+    padding-right: 2.5rem;
+}
+
+/* Modern Label */
+.modern-label {
+    @apply block text-sm font-semibold text-gray-700 mb-2;
+    font-family: var(--font-body);
+}
+
+/* Gradient Button */
+.btn-gradient {
+    @apply relative px-8 py-3.5 rounded-lg font-semibold text-white overflow-hidden transition-all duration-300 ease-out transform hover:scale-105 hover:shadow-xl active:scale-95;
+    background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+    box-shadow: 0 4px 16px rgba(29, 78, 216, 0.4);
+    font-family: var(--font-display);
+}
+
+.btn-gradient:hover {
+    box-shadow: 0 8px 24px rgba(29, 78, 216, 0.6);
+    animation: glow 2s ease-in-out infinite;
+}
+
+.btn-gradient::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.btn-gradient:hover::before {
+    left: 100%;
+}
+
+/* File Upload Styles */
+.file-upload {
+    @apply relative block w-full px-6 py-8 border-2 border-dashed border-blue-300 rounded-xl bg-gradient-to-br from-blue-50 to-sky-50 transition-all duration-300 ease-out cursor-pointer hover:border-blue-400 hover:bg-gradient-to-br hover:from-blue-100 hover:to-sky-100 hover:shadow-lg;
+}
+
+.file-upload:hover {
+    transform: translateY(-2px);
+}
+
+/* Section Heading */
+.section-heading {
+    @apply text-lg font-bold bg-gradient-to-r from-blue-700 to-blue-600 bg-clip-text text-transparent;
+    font-family: var(--font-display);
+}
+
+/* Animated Gradient Border */
+.gradient-border {
+    position: relative;
+    border-radius: 16px;
+}
+
+.gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 16px;
+    padding: 2px;
+    background: linear-gradient(135deg, #1d4ed8, #1e40af, #3b82f6);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gradient-border:hover::before {
+    opacity: 1;
+}
+
+/* Smooth Transitions */
+* {
+    @apply transition-colors duration-200;
+}

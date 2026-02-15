@@ -12,7 +12,7 @@ Route::view('dashboard', 'dashboard')
 
 require __DIR__.'/settings.php';
 
-Route::get('/documents/create', function () {
-    return view('documents.create');
+Route::get('/document/create', function () {
+    return view('document.create');
 })->middleware('auth');
 

@@ -23,8 +23,8 @@
     --color-zinc-900: #171717;
     --color-zinc-950: #0a0a0a;
 
-    --color-accent: var(--color-neutral-800);
-    --color-accent-content: var(--color-neutral-800);
+    --color-accent: var(--color-blue-600);
+    --color-accent-content: var(--color-white);
     --color-accent-foreground: var(--color-white);
 }
 
@@ -148,10 +148,30 @@ select:focus[data-flux-control] {
 /* Modern Body Styles */
 body {
     font-family: var(--font-body);
+    min-height: 100vh;
+    @apply bg-white text-gray-900;
+}
+
+.dark body {
+    @apply bg-zinc-950 text-white;
+    background-image: none;
+}
+
+/* Specific background for the Site Layout (Form Page) */
+.site-layout-bg {
     background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 50%, #3b82f6 100%);
     background-size: 400% 400%;
     animation: gradientShift 15s ease infinite;
-    min-height: 100vh;
+}
+
+/* In dark mode, site layout should potentially be dark or keep gradient? 
+   User said "design initial au mode claire", implying changes were for light mode.
+   Let's make sure dark mode overrides this if needed, OR keeps it if it looks good.
+   The "initial design" was gradient. Dark mode usually implies dark background. 
+   Let's allow dark mode to override it to be consistent with the rest of the dark theme unless specified otherwise. */
+.dark .site-layout-bg {
+    background: none;
+    @apply bg-zinc-950;
 }
 
 /* Typography */
